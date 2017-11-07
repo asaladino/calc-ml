@@ -72,8 +72,6 @@ generate_data = GenerateData()
 generate_data.build()
 generate_data.save()
 
-generate_data.fileName = 'test_data.csv'
-generate_data.lowerBound = generate_data.upperBound
-generate_data.upperBound = 2 * generate_data.upperBound
+generate_data.fileName = 'testing_data.csv'
 generate_data.build()
 generate_data.save()
