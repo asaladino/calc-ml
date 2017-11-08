@@ -5,7 +5,6 @@ from sklearn.preprocessing import MinMaxScaler
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-
 # Load training data set from csv file
 training_data_df = pd.read_csv('../data/training_data.csv', dtype=float, index_col='id')
 
@@ -30,14 +29,14 @@ Y_scaled_testing = Y_scaler.transform(Y_testing)
 print(X_scaled_testing.shape)
 print(Y_scaled_testing.shape)
 
-print('Note: Y values were scaled by multiplying by {:.10f} and adding {:.4f}'.format(Y_scaler.scale_[0], Y_scaler.min_[0]))
+print('Y values were scaled by multiplying by {:.10f} and adding {:.4f}'.format(Y_scaler.scale_[0], Y_scaler.min_[0]))
 
 # Define model parameters
 learning_rate = 0.001
 training_epochs = 100
 display_step = 5
 
-number_of_inputs = 2
+number_of_inputs = X_scaled_testing.shape[1]
 number_of_outputs = 1
 
 layer_1_nodes = 50
@@ -90,8 +89,8 @@ with tf.Session() as session:
     # Training loop
     for epoch in range(training_epochs):
         session.run(optimizer, feed_dict={X: X_scaled_training, Y: Y_scaled_training})
-        # print('Training pass: {}'.format(epoch))
-        if epoch % 5 == 0:
+        
+        if epoch % display_step == 0:
             training_cost = session.run(cost, feed_dict={X: X_scaled_training, Y: Y_scaled_training})
             testing_cost = session.run(cost, feed_dict={X: X_scaled_testing, Y: Y_scaled_testing})
             print(epoch, training_cost, testing_cost)
