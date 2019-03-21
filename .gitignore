@@ -3,3 +3,4 @@
 logs/testing/
 logs/training/
 *.pyc
+venv/
