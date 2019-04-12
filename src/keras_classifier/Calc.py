@@ -4,7 +4,7 @@ from src.helpers.helper_classifier import invert, convert
 
 class Calc:
     def __init__(self):
-        self.largest = 1000
+        self.largest = 10000
         self.alphabet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+', ' ']
         self.model = keras.models.load_model('../training/keras_classifier.h5')
 

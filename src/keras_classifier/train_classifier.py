@@ -5,15 +5,15 @@ from tensorflow.python.keras.layers import LSTM, RepeatVector, TimeDistributed, 
 
 from src.helpers.helper_classifier import generate_data, invert
 
-n_samples = 10000
+n_samples = 200000
 n_numbers = 2
 largest = 10000
 alphabet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+', ' ']
 n_chars = len(alphabet)
 n_in_seq_length = n_numbers * ceil(log10(largest + 1)) + n_numbers - 1
 n_out_seq_length = ceil(log10(n_numbers * (largest + 1)))
-n_batch = 10
-n_epoch = 200
+n_batch = 100
+n_epoch = 500
 model = Sequential([
     LSTM(100, input_shape=(n_in_seq_length, n_chars)),
     RepeatVector(n_out_seq_length),
